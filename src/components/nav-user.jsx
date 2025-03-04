@@ -20,12 +20,12 @@ export function NavUser() {
   const { isMobile } = useSidebar();
   const { user, setUser } = useCurrentUser();
 
-  const { name, avatar, email } = user;
+  const { name = "", imageUrl, email } = user;
 
   const UserCard = (
     <>
       <Avatar className="h-8 w-8 rounded-lg">
-        <AvatarImage src={avatar} alt={name} />
+        <AvatarImage src={imageUrl} alt={name} />
         <AvatarFallback className="rounded-lg">
           {name.charAt(0).toUpperCase()}
         </AvatarFallback>

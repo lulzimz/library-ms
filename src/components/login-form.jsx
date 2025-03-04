@@ -4,17 +4,33 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
 import useCurrentUser from "@/store/currentUserStore";
+import { signInWithEmailAndPw } from "@/services/firebase/authentication";
+import { useState } from "react";
 
 export function LoginForm({ className, ...props }) {
   const navigate = useNavigate();
 
-  const { setUser } = useCurrentUser();
+  const [userCred, setUserCred] = useState({});
+
+  const { onLogin } = useCurrentUser();
+
+  const handleLogin = () => {
+    signInWithEmailAndPw(userCred).then((userId) => {
+      onLogin(userId);
+    });
+  };
 
   return (
-    <form className={cn("flex flex-col gap-6", className)} {...props}>
+    <form
+      className={cn("flex flex-col gap-6", className)}
+      {...props}
+      onSubmit={(e) => {
+        e.preventDefault(); // Prevent page reload
+        handleLogin();
+      }}
+    >
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="text-2xl font-bold">Login to your account</h1>
-
         <p className="text-muted-foreground text-sm text-balance">
           Enter your email below to login to your account
         </p>
@@ -23,7 +39,14 @@ export function LoginForm({ className, ...props }) {
       <div className="grid gap-6">
         <div className="grid gap-3">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="m@example.com" required />
+          <Input
+            id="email"
+            type="email"
+            placeholder="m@example.com"
+            onChange={(e) =>
+              setUserCred((p) => ({ ...p, email: e.target.value }))
+            }
+          />
         </div>
 
         <div className="grid gap-3">
@@ -37,19 +60,19 @@ export function LoginForm({ className, ...props }) {
             </a>
           </div>
 
-          <Input id="password" type="password" required />
+          <Input
+            id="password"
+            type="password"
+            onChange={(e) =>
+              setUserCred((p) => ({ ...p, password: e.target.value }))
+            }
+          />
         </div>
 
         <Button
           type="submit"
           className="w-full"
-          onClick={() =>
-            setUser({
-              userId: 1,
-              name: "shadcn",
-              email: "m@example.com",
-            })
-          }
+          disabled={Object.values(userCred).length !== 2}
         >
           Login
         </Button>

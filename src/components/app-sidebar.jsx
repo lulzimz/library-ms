@@ -25,11 +25,6 @@ import { SidebarCard } from "@/customComponents";
 
 // This is sample data.
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   teams: [
     {
       name: "Acme Inc",
@@ -167,7 +162,7 @@ export function AppSidebar({ menuItems, ...props }) {
       <SidebarFooter>
         <SidebarCard />
 
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

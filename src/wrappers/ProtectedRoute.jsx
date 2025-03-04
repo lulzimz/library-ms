@@ -2,9 +2,9 @@ import useCurrentUser from "@/store/currentUserStore";
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {
-  const { user } = useCurrentUser();
+  const { userId } = useCurrentUser(true);
 
-  if (!user) {
+  if (!userId) {
     return <Navigate to="/login" />;
   }
 

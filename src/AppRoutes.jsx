@@ -4,11 +4,12 @@ import { ProtectedRoute, PublicRoute } from "./wrappers";
 import { routes } from "./constants/routes";
 import { Login, Register } from "./pages";
 import { componentsList } from "./constants/componentsList";
+import useCurrentUser from "./store/currentUserStore";
 
 const AppRoutes = () => {
-  const { isLoading } = {};
+  const { loadingUser } = useCurrentUser();
 
-  if (isLoading) {
+  if (loadingUser) {
     return <Loading />;
   }
 
