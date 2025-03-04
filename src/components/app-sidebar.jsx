@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   AudioWaveform,
   BookOpen,
@@ -13,7 +12,6 @@ import {
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
 import { NavUser } from "@/components/nav-user";
 import { TeamSwitcher } from "@/components/team-switcher";
 import {
@@ -155,7 +153,7 @@ const data = {
   ],
 };
 
-export function AppSidebar({ ...props }) {
+export function AppSidebar({ menuItems, ...props }) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -163,8 +161,7 @@ export function AppSidebar({ ...props }) {
       </SidebarHeader>
 
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavMain items={menuItems} />
       </SidebarContent>
 
       <SidebarFooter>

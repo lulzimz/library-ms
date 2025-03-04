@@ -1,10 +1,10 @@
 import "./App.css";
-import { RootLayout } from "./customComponents";
+import AppRoutes from "./AppRoutes";
 
 function App() {
   return (
     <>
-      <RootLayout />
+      <AppRoutes />
     </>
   );
 }
