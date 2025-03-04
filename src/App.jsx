@@ -1,9 +1,10 @@
 import "./App.css";
+import { RootLayout } from "./customComponents";
 
 function App() {
   return (
     <>
-      <h1>Library MS</h1>
+      <RootLayout />
     </>
   );
 }
