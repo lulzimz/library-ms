@@ -23,6 +23,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { SidebarCard } from "@/customComponents";
 
 // This is sample data.
 const data = {
@@ -160,11 +161,15 @@ export function AppSidebar({ ...props }) {
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
+
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
+
       <SidebarFooter>
+        <SidebarCard />
+
         <NavUser user={data.user} />
       </SidebarFooter>
       <SidebarRail />
