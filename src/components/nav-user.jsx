@@ -15,10 +15,14 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import useCurrentUser from "@/store/currentUserStore";
+import { EditUserModal } from "./edit-user-modal";
+import { useState } from "react";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
   const { user, setUser } = useCurrentUser();
+
+  const [openEditUserModal, setOpenEditUserModal] = useState(false);
 
   const { name = "", imageUrl, email } = user;
 
@@ -66,18 +70,28 @@ export function NavUser() {
             <DropdownMenuSeparator />
 
             <DropdownMenuItem>
-              <BadgeCheck />
-              Account
+              <div
+                className="flex items-center gap-2 w-full"
+                onClick={() => setOpenEditUserModal(true)}
+              >
+                <BadgeCheck />
+                Account
+              </div>
             </DropdownMenuItem>
 
             <DropdownMenuSeparator />
 
-            <DropdownMenuItem onClick={() => setUser(null)}>
+            <DropdownMenuItem onClick={() => setUser({ userId: "" })}>
               <LogOut />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+
+        <EditUserModal
+          openEditUserModal={openEditUserModal}
+          setOpenEditUserModal={setOpenEditUserModal}
+        />
       </SidebarMenuItem>
     </SidebarMenu>
   );

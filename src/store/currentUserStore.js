@@ -46,8 +46,9 @@ const useCurrentUser = (returnUser) => {
   const { user, loadingUser, setLoadingUser, setUser } = currentUserStore();
 
   useEffect(() => {
-    setUserStore(setUser, setLoadingUser);
-  }, []);
+    loadingUser && setUserStore(setUser, setLoadingUser);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadingUser]);
 
   const onLogin = async (userId) => {
     if (!userId) return;

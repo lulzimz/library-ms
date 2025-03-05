@@ -43,9 +43,9 @@ export const getCollection = async (collectionId) => {
     const items = [];
 
     collectionDoc.forEach((item) => {
-      const { sondazhQuestion, sondazhOptions } = item.data();
+      const data = item.data();
 
-      items.push({ id: item.id, sondazhQuestion, sondazhOptions });
+      items.push({ id: item.id, ...data });
     });
 
     console.log(`getCollection in ${collectionId}`);
