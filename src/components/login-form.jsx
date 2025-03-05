@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import useCurrentUser from "@/store/currentUserStore";
 import { signInWithEmailAndPw } from "@/services/firebase/authentication";
 import { useState } from "react";
-import { toast } from "sonner";
+import { showSuccessMessage } from "@/utils/windowMessages";
 
 export function LoginForm({ className, ...props }) {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export function LoginForm({ className, ...props }) {
   const handleLogin = () => {
     signInWithEmailAndPw(userCred).then((userId) => {
       onLogin(userId);
-      toast("Logged in successfully!");
+      showSuccessMessage({ text: "Logged in successfully!" });
     });
   };
 

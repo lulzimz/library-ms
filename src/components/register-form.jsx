@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
 import { registerWithEmailAndPw } from "@/services/firebase/authentication";
 import { useState } from "react";
-import { toast } from "sonner";
+import { showSuccessMessage } from "@/utils/windowMessages";
 
 export function RegisterForm({ className, ...props }) {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export function RegisterForm({ className, ...props }) {
   const handleRegister = () => {
     registerWithEmailAndPw(userCred).then(() => {
       navigate("/login");
-      toast("Registered successfully!");
+      showSuccessMessage({ text: "Registered successfully!!" });
     });
   };
 
