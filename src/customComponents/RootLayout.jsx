@@ -8,11 +8,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { usePathname } from "@/hooks/usePathname";
 import { Outlet } from "react-router-dom";
 
@@ -20,7 +16,7 @@ export default function RootLayout({ menuItems }) {
   const { title } = usePathname();
 
   return (
-    <SidebarProvider>
+    <>
       <AppSidebar menuItems={menuItems} />
 
       <SidebarInset>
@@ -58,6 +54,6 @@ export default function RootLayout({ menuItems }) {
           <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
         </div>
       </SidebarInset>
-    </SidebarProvider>
+    </>
   );
 }

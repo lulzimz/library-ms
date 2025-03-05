@@ -1,3 +1,5 @@
+import { ThemeProvider } from "@/components/theme-provider";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import "@testing-library/jest-dom";
 
 import { render as rtlRender } from "@testing-library/react";
@@ -10,7 +12,9 @@ export function customRender(ui, extendedRenderOptions = {}) {
     <BrowserRouter
       future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
     >
-      {children}
+      <ThemeProvider>
+        <SidebarProvider>{children}</SidebarProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
   return {
@@ -22,3 +26,13 @@ export function customRender(ui, extendedRenderOptions = {}) {
 export * from "@testing-library/react";
 
 export { customRender as render };
+
+Object.defineProperty(window, "matchMedia", {
+  value: () => {
+    return {
+      matches: false,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+    };
+  },
+});
